@@ -1,6 +1,8 @@
 # Project_Break_II_ML
 Final individual project of the Data Science &amp;amp; AI Bootcamp offered by TheBridge
 
+![Flight Delay](src/results_notebook/img/openart_image_2.jpg)
+
 ## Table of Contents
 - [Introduction](#introduction)
 - [Objectives](#objectives)
@@ -100,7 +102,8 @@ The dataset used in this project is sourced from Kaggle and is licensed under **
 
 ## Project Structure
 
-src/
+```plaintext
+(src/)
 │── .gitignore.txt
 │── requirements.txt
 │
@@ -134,3 +137,4 @@ src/
 │
 └── utils/
 └── User_Functions.py
+```
