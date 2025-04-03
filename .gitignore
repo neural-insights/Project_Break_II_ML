@@ -1,0 +1,8 @@
+src/data/weather_meteo_by_airport.csv
+src/data/airports_geolocation.csv
+src/data/Cancelled_Diverted_2023.csv
+src/data/maj us flight - january 2024.csv
+src/data/US_flights_2023.csv
+
+src/utils/__pycache__/
+estrutura
