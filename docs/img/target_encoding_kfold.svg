@@ -1,16 +1,17 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1180" height="620" viewBox="0 0 1180 620" font-family="'Segoe UI', -apple-system, 'Helvetica Neue', Helvetica, Arial, sans-serif" role="img" aria-label="Leakage-safe K-fold target encoding">
-<title>Leakage-safe K-fold target encoding</title>
+<svg xmlns="http://www.w3.org/2000/svg" width="1180" height="620" viewBox="0 0 1180 620" font-family="'Segoe UI', -apple-system, 'Helvetica Neue', Helvetica, Arial, sans-serif" role="img" aria-label="Out-of-fold (K-fold) target encoding">
+<title>Out-of-fold (K-fold) target encoding</title>
 <defs>
   <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
     <path d="M0,0 L10,5 L0,10 z" fill="#5d6b86"/>
   </marker>
 </defs>
 <rect x="0" y="0" width="1180" height="620" rx="20" fill="#0b1220" stroke="#0b1220" stroke-width="1" />
-<text x="40" y="54" font-size="26" fill="#e6edf7" font-weight="700" text-anchor="start" >Leakage-safe K-fold target encoding</text>
-<text x="40" y="82" font-size="14" fill="#9aa8c1" font-weight="400" text-anchor="start" >How categorical columns become numbers without leaking the answer into training</text>
+<text x="40" y="54" font-size="26" fill="#e6edf7" font-weight="700" text-anchor="start" >Out-of-fold (K-fold) target encoding</text>
+<text x="40" y="82" font-size="14" fill="#9aa8c1" font-weight="400" text-anchor="start" >How categorical columns become numbers while keeping each row's own label out of its encoding</text>
 <text x="40" y="130" font-size="16" fill="#e6edf7" font-weight="600" text-anchor="start" >Training set split into 5 stratified folds</text>
 <text x="40" y="154.0" font-size="13" fill="#9aa8c1" font-weight="400" text-anchor="start" >In each round, category means are learned on 4 folds and written into</text>
-<text x="40" y="171.94" font-size="13" fill="#9aa8c1" font-weight="400" text-anchor="start" >the held-out fold, so no row is encoded with its own label.</text>
+<text x="40" y="171.94" font-size="13" fill="#9aa8c1" font-weight="400" text-anchor="start" >the held-out fold, so rows are encoded from the other folds'</text>
+<text x="40" y="189.88" font-size="13" fill="#9aa8c1" font-weight="400" text-anchor="start" >statistics.</text>
 <text x="40" y="229" font-size="13" fill="#9aa8c1" font-weight="600" text-anchor="start" >Round 1</text>
 <rect x="124" y="200" width="92" height="46" rx="8" fill="#fbbf24" stroke="#fbbf24" stroke-width="1" fill-opacity="0.92"/>
 <text x="170.0" y="228" font-size="13" fill="#0b1220" font-weight="700" text-anchor="middle" >encode</text>

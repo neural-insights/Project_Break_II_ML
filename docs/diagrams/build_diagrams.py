@@ -175,7 +175,7 @@ def target_encoding():
     W, H = 1180, 620
     body = []
     body.append(t(40, 130, "Training set split into 5 stratified folds", 16, TEXT, 600))
-    body.append(lines(40, 154, "In each round, category means are learned on 4 folds and written into the held-out fold, so no row is encoded with its own label.", 70, 13))
+    body.append(lines(40, 154, "In each round, category means are learned on 4 folds and written into the held-out fold, so rows are encoded from the other folds' statistics.", 70, 13))
     bx, by, bw, bh, g = 40, 200, 92, 46, 8
     for r in range(5):
         y = by + r * (bh + 14)
@@ -205,8 +205,8 @@ def target_encoding():
     body.append(t(rx + 24, 384, "Test set", 16, TEXT, 650))
     body.append(lines(rx + 24, 410, "Mapped with the category means learned on the training folds. Categories never seen in training get the global mean (only 18 rows in the whole test split).", 56, 13))
     body.append(lines(40, H - 52, "Applied to 8 columns: Airline, Tail_Number, Dep_Airport, DepTime_label, Arr_Airport, Distance_type, Manufacturer, Model. It turns high-cardinality IDs (thousands of aircraft) into one informative number each, without one-hot explosion.", 150, 12.5, FAINT))
-    write("target_encoding_kfold.svg", svg(W, H, "Leakage-safe K-fold target encoding",
-                                           "How categorical columns become numbers without leaking the answer into training", "\n".join(body)))
+    write("target_encoding_kfold.svg", svg(W, H, "Out-of-fold (K-fold) target encoding",
+                                           "How categorical columns become numbers while keeping each row's own label out of its encoding", "\n".join(body)))
 
 
 # ---------------------------------------------------------------- 4. feature selection

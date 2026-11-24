@@ -18,7 +18,7 @@ Final notebook: [`src/results_notebook/flight_delay_classification.ipynb`](../sr
 
 **Goal:** flag, well before departure, the US domestic flights that are likely to leave more than 15 minutes late.
 
-**Constraint:** use only information available in advance: the schedule, route, airline, aircraft and the weather forecast for the day. Real-time signals, such as the delay of the aircraft's previous flight, are excluded on purpose. They would raise the scores but make the model useless for planning.
+**Constraint:** use only information available in advance: the schedule, route, airline, aircraft and the weather expected for the day. Real-time signals, such as the delay of the aircraft's previous flight, are excluded on purpose. They would raise the scores but make the model useless for planning.
 
 **Outcome:** an XGBoost classifier tuned with Hyperopt and evaluated on 320,233 held-out flights:
 
@@ -68,17 +68,17 @@ From the merged table, the model may use 15 numeric features (day of week, month
 - A 25% random sample (1,685,637 flights) keeps training times practical, then an 80/20 train/test split.
 - **IsolationForest** (5% contamination), fitted on the training numerics, removes outliers from both sets. The delayed share barely moves (37.9% to 37.7%), so the removal is not biased toward either class.
 
-### 3. Leakage-safe target encoding
+### 3. Out-of-fold target encoding
 
 ![K-fold target encoding](img/target_encoding_kfold.svg)
 
-High-cardinality columns such as tail number (thousands of aircraft) and airports would explode under one-hot encoding. Each category is instead replaced by its **smoothed delay rate**, computed out-of-fold with 5 stratified folds so that no training row sees its own label. Smoothing (a = 0.3) pulls rare categories toward the global rate. Notebook 03 in the archive compared this with a mixed one-hot approach before target encoding alone was kept.
+High-cardinality columns such as tail number (thousands of aircraft) and airports would explode under one-hot encoding. Each category is instead replaced by its **smoothed delay rate**, computed out-of-fold with 5 stratified folds, so a training row is encoded from the other folds' statistics rather than its own label (one edge case for very rare categories is noted under [Limitations](#limitations-and-next-steps)). Smoothing (a = 0.3) pulls rare categories toward the global rate. Notebook 03 in the archive compared this with a mixed one-hot approach before target encoding alone was kept.
 
 ### 4. Skew correction and scaling
 
 `suggest_best_transformations` tries square root, cube root, log1p and Box-Cox on every continuous column whose skewness exceeds 0.5, and keeps the one closest to zero skew. The result: Box-Cox for flight duration, cube root for precipitation, log1p for snow and square root for wind speed. Standard scaling is used for the statistical tests and the logistic regression. Tree models use the unscaled values.
 
-### Feature selection
+### 5. Feature selection
 
 ![Feature selection](img/feature_selection_funnel.svg)
 
@@ -89,7 +89,7 @@ Final inputs: `Day_Of_Week, Flight_Duration, Aicraft_age, LATITUDE, LONGITUDE, t
 
 A clustering approach, inspired by [a 2024 Scientific Reports article](https://www.nature.com/articles/s41598-024-55217-z) that trains one model per density-based cluster, was also tested with HDBSCAN. It brought no gain for a large compute cost, so it was not kept.
 
-### 5. Class balancing and model selection
+### 6. Class balancing and model selection
 
 ![Model selection](img/model_selection.svg)
 
@@ -146,6 +146,8 @@ All earlier attempts are kept, unchanged, in [`src/notebooks/archive`](../src/no
 
 - **Random split across 2023.** Training and test flights come from the same days. A time-based split (train on January–September, test on October–December) would better reflect real use and probably lower the scores somewhat.
 - **Weather is observed, not forecast.** The daily weather is the measured weather for the flight date, used as a proxy for the forecast that would be available in advance.
-- **Encoding details.** Test-set categories are mapped with the means from the training folds rather than a separate refit on the full training set. This is a minor variance, not a leak.
+- **Target-encoding edge case.** The helper keeps one dictionary of category means per column and updates it fold by fold. A category whose training rows all fall in a single fold is therefore encoded, in that fold, with a mean computed in an earlier round from those same rows: a small leak limited to very rare categories (mostly aircraft with few flights), damped by smoothing. The test set is never used to compute means, so the test metrics are unaffected by this. A fresh dictionary per fold would fix it.
+- **Outliers removed from the test set too.** The IsolationForest filter was applied to both splits, so the test set (5% smaller) is slightly cleaner than real traffic would be.
+- **Default 0.5 threshold.** Precision and recall are reported at the default decision threshold. An operator would pick the threshold from the cost of a missed delay versus a false alarm.
 - **Narrow search spaces.** The Hyperopt ranges were narrowed by hand around the RandomizedSearch results, and the LightGBM Hyperopt run maps two choice indices to a different list than its search space defines. This does not affect the elected XGBoost model.
 - **Next steps:** time-based validation; route- and hub-level aggregates (historical delay rate per route and hour); decision thresholds tuned to a cost model; SHAP explanations per flight; and a small API to score a day's schedule.

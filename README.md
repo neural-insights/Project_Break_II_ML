@@ -13,7 +13,7 @@ Final individual project of the Data Science & AI Bootcamp at The Bridge (2025).
 
 ## At a glance
 
-Flight delays cost airlines, airports and passengers money and goodwill, and the earlier a delay is anticipated, the cheaper it is to absorb. This project builds a binary classifier on **6.7 million 2023 US flights** joined with daily weather and airport location data. It deliberately uses **only pre-flight information**: schedule, route, aircraft and weather. No real-time or post-event delay data is used, so the model can run days ahead.
+Flight delays cost airlines, airports and passengers money and goodwill, and the earlier a delay is anticipated, the cheaper it is to absorb. This project builds a binary classifier on **6.7 million 2023 US flights** joined with daily weather and airport location data. It deliberately uses **only pre-flight information**: schedule, route, aircraft and weather. No real-time or post-event delay data is used, so flights can be scored before the day of operation.
 
 | Test set: 320,233 unseen flights | Model | Base-rate guess |
 |---|---|---|
@@ -28,7 +28,7 @@ The elected model is **XGBoost tuned with Hyperopt**. It catches 63% of delayed 
 
 ## What makes it interesting
 
-- **No leakage by design.** Every column describing the delay itself (minutes, causes, previous-aircraft delay) is excluded, and categorical features are target-encoded **out-of-fold**. An earlier version that used the previous flight's delay scored higher (F1 on delayed flights about 0.62 vs 0.59) but was dropped because that value is not known in advance.
+- **Built to avoid leakage.** Every column describing the delay itself (minutes, causes, previous-aircraft delay) is excluded, and categorical features are target-encoded **out-of-fold**. An earlier version that used the previous flight's delay scored higher (F1 on delayed flights about 0.62 vs 0.59) but was dropped because that value is not known in advance.
 - **High-cardinality categoricals handled cleanly.** Thousands of aircraft tail numbers and hundreds of airports become one smoothed number each, instead of a huge one-hot matrix.
 - **A careful, measurable selection process.** IsolationForest outlier removal, per-column skew correction, ANOVA plus a correlation filter (23 to 16 features), then a ladder of baselines, RandomizedSearchCV and Hyperopt, all compared on the same held-out flights.
 - **A documented trail of experiments.** Seven earlier notebooks are kept in [`src/notebooks/archive`](src/notebooks/archive), each tied to the decision it informed.
@@ -76,15 +76,15 @@ py -3.12 -m venv .venv
 
 On macOS/Linux, use `python3.12 -m venv .venv` and `.venv/bin/python -m pip install -r src/results_notebook/requirements.txt`. On Windows, TensorFlow needs [long-path support](https://learn.microsoft.com/windows/win32/fileio/maximum-file-path-limitation#enable-long-paths-in-windows-10-version-1607-and-later) enabled.
 
-**2. Download the data** from Kaggle: [2023 US Civil Flights, Delay, Meteo and Aircraft](https://www.kaggle.com/datasets/bordanova/2023-us-civil-flights-delay-meteo-and-aircraft/data) (CC0, about 1.2 GB). Place these three files in `src/data/`:
+**2. Download the data** from Kaggle: [2023 US Civil Flights, Delay, Meteo and Aircraft](https://www.kaggle.com/datasets/bordanova/2023-us-civil-flights-delay-meteo-and-aircraft/data) (CC0, about 1.2 GB). Create the folder `src/data/` and place these three files in it:
 
 - `US_flights_2023.csv`
 - `weather_meteo_by_airport.csv`
 - `airports_geolocation.csv`
 
-**3. Run the notebook** [`src/results_notebook/flight_delay_classification.ipynb`](src/results_notebook/flight_delay_classification.ipynb) with the `.venv` kernel. Paths are relative to the notebook's folder. The hyperparameter searches take a while: Hyperopt alone ran for about 16 minutes on the original GPU machine, and XGBoost uses a GPU when one is available.
+**3. Run the notebook** [`src/results_notebook/flight_delay_classification.ipynb`](src/results_notebook/flight_delay_classification.ipynb) in Jupyter or VS Code with the `.venv` kernel. Paths are relative to the notebook's folder. The hyperparameter searches take a while: Hyperopt alone ran for about 16 minutes on the original GPU machine, and XGBoost uses a GPU when one is available.
 
-To use the trained model without retraining, load `src/models/best_model_xgb.pkl` and pass a frame with the 16 features listed in the [report](docs/report.md#feature-selection), prepared with the same steps.
+To use the trained model without retraining, load `src/models/best_model_xgb.pkl` and pass a frame with the 16 features listed in the [report](docs/report.md#5-feature-selection), prepared with the same steps.
 
 <details>
 <summary><b>Data dictionary</b> (raw columns used by the model)</summary>
