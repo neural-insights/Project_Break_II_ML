@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1180" height="640" viewBox="0 0 1180 640" font-family="'Segoe UI', -apple-system, 'Helvetica Neue', Helvetica, Arial, sans-serif" role="img" aria-label="How many flights reach the model">
+<title>How many flights reach the model</title>
+<defs>
+  <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+    <path d="M0,0 L10,5 L0,10 z" fill="#5d6b86"/>
+  </marker>
+</defs>
+<rect x="0" y="0" width="1180" height="640" rx="20" fill="#0b1220" stroke="#0b1220" stroke-width="1" />
+<text x="40" y="54" font-size="26" fill="#e6edf7" font-weight="700" text-anchor="start" >How many flights reach the model</text>
+<text x="40" y="82" font-size="14" fill="#9aa8c1" font-weight="400" text-anchor="start" >Row counts at each preparation step (training side unless noted)</text>
+<text x="40" y="144" font-size="16" fill="#e6edf7" font-weight="600" text-anchor="start" >Raw flights</text>
+<text x="40" y="166" font-size="12.5" fill="#9aa8c1" font-weight="400" text-anchor="start" >US_flights_2023.csv</text>
+<rect x="380" y="128" width="620" height="40" rx="8" fill="#121c31" stroke="#26365a" stroke-width="1" />
+<rect x="380" y="128" width="620.0" height="40" rx="8" fill="#38bdf8" stroke="#38bdf8" stroke-width="0" fill-opacity="0.9"/>
+<text x="1014.0" y="154" font-size="16" fill="#e6edf7" font-weight="700" text-anchor="start" >6,743,404</text>
+<text x="40" y="210" font-size="16" fill="#e6edf7" font-weight="600" text-anchor="start" >Deduplicated</text>
+<text x="40" y="232" font-size="12.5" fill="#9aa8c1" font-weight="400" text-anchor="start" >853 duplicate rows removed</text>
+<rect x="380" y="194" width="620" height="40" rx="8" fill="#121c31" stroke="#26365a" stroke-width="1" />
+<rect x="380" y="194" width="619.9607856265575" height="40" rx="8" fill="#a78bfa" stroke="#a78bfa" stroke-width="0" fill-opacity="0.9"/>
+<text x="1013.9607856265575" y="220" font-size="16" fill="#e6edf7" font-weight="700" text-anchor="start" >6,742,551</text>
+<text x="40" y="276" font-size="16" fill="#e6edf7" font-weight="600" text-anchor="start" >25% random sample</text>
+<text x="40" y="298" font-size="12.5" fill="#9aa8c1" font-weight="400" text-anchor="start" >for computational feasibility</text>
+<rect x="380" y="260" width="620" height="40" rx="8" fill="#121c31" stroke="#26365a" stroke-width="1" />
+<rect x="380" y="260" width="309.98032385263747" height="40" rx="8" fill="#a78bfa" stroke="#a78bfa" stroke-width="0" fill-opacity="0.9"/>
+<text x="703.9803238526374" y="286" font-size="16" fill="#e6edf7" font-weight="700" text-anchor="start" >1,685,637</text>
+<text x="40" y="342" font-size="16" fill="#e6edf7" font-weight="600" text-anchor="start" >Train split (80%)</text>
+<text x="40" y="364" font-size="12.5" fill="#9aa8c1" font-weight="400" text-anchor="start" >test split: 337,128 rows</text>
+<rect x="380" y="326" width="620" height="40" rx="8" fill="#121c31" stroke="#26365a" stroke-width="1" />
+<rect x="380" y="326" width="277.2547686484723" height="40" rx="8" fill="#a78bfa" stroke="#a78bfa" stroke-width="0" fill-opacity="0.9"/>
+<text x="671.2547686484722" y="352" font-size="16" fill="#e6edf7" font-weight="700" text-anchor="start" >1,348,509</text>
+<text x="40" y="408" font-size="16" fill="#e6edf7" font-weight="600" text-anchor="start" >Train without outliers</text>
+<text x="40" y="430" font-size="12.5" fill="#9aa8c1" font-weight="400" text-anchor="start" >IsolationForest, 5% removed; test: 320,233</text>
+<rect x="380" y="392" width="620" height="40" rx="8" fill="#121c31" stroke="#26365a" stroke-width="1" />
+<rect x="380" y="392" width="270.2344631043267" height="40" rx="8" fill="#a78bfa" stroke="#a78bfa" stroke-width="0" fill-opacity="0.9"/>
+<text x="664.2344631043268" y="418" font-size="16" fill="#e6edf7" font-weight="700" text-anchor="start" >1,281,083</text>
+<text x="40" y="474" font-size="16" fill="#e6edf7" font-weight="600" text-anchor="start" >Training subsample</text>
+<text x="40" y="496" font-size="12.5" fill="#9aa8c1" font-weight="400" text-anchor="start" >25% of the train split size</text>
+<rect x="380" y="458" width="620" height="40" rx="8" fill="#121c31" stroke="#26365a" stroke-width="1" />
+<rect x="380" y="458" width="138.62733292398224" height="40" rx="8" fill="#fbbf24" stroke="#fbbf24" stroke-width="0" fill-opacity="0.9"/>
+<text x="532.6273329239823" y="484" font-size="16" fill="#e6edf7" font-weight="700" text-anchor="start" >337,127</text>
+<text x="40" y="540" font-size="16" fill="#e6edf7" font-weight="600" text-anchor="start" >Balanced training set</text>
+<text x="40" y="562" font-size="12.5" fill="#9aa8c1" font-weight="400" text-anchor="start" >random undersampling: 127,239 per class</text>
+<rect x="380" y="524" width="620" height="40" rx="8" fill="#121c31" stroke="#26365a" stroke-width="1" />
+<rect x="380" y="524" width="120.4417955433067" height="40" rx="8" fill="#34d399" stroke="#34d399" stroke-width="0" fill-opacity="0.9"/>
+<text x="514.4417955433066" y="550" font-size="16" fill="#e6edf7" font-weight="700" text-anchor="start" >254,478</text>
+<text x="40" y="610" font-size="12" fill="#5d6b86" font-weight="400" text-anchor="start" >Bar length is proportional to the square root of the row count, so the smaller sets stay readable.</text>
+</svg>

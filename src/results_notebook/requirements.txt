@@ -26,6 +26,9 @@ scipy==1.13.1
 imbalanced-learn==0.12.4
 category-encoders==2.6.4
 hyperopt==0.2.7
+# hyperopt 0.2.7 imports pkg_resources, which setuptools removed in 81.0;
+# Python 3.12 venvs do not guarantee setuptools, so pin the last version with it.
+setuptools==80.10.2
 joblib==1.4.2
 tqdm==4.67.1
 tensorflow==2.21.0

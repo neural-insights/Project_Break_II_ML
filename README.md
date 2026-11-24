@@ -1,144 +1,121 @@
-# Project_Break_II_ML
-Final individual project of the Data Science &amp;amp; AI Bootcamp offered by TheBridge
+# Flight Delay Prediction
 
-![Flight Delay](src/results_notebook/img/openart_image_2.jpg)
+**Predicting whether a US domestic flight will leave more than 15 minutes late, using only information available well before departure.**
 
-## Table of Contents
-- [Introduction](#introduction)
-- [Objectives](#objectives)
-- [Data](#data)
-- [Data Description](#data-description)
-- [Usage](#usage)
-- [Contribution](#contribution)
-- [License](#license)
-- [Project Structure](#project-structure)
+![Python](https://img.shields.io/badge/Python-3.12-3776AB?logo=python&logoColor=white)
+![scikit-learn](https://img.shields.io/badge/scikit--learn-1.5-F7931E?logo=scikitlearn&logoColor=white)
+![XGBoost](https://img.shields.io/badge/XGBoost-2.1-EB5E28)
+![License: MIT](https://img.shields.io/badge/License-MIT-green)
 
+Final individual project of the Data Science & AI Bootcamp at The Bridge (2025).
 
-## Introduction
+![Flight delay](src/results_notebook/img/openart_image_2.jpg)
 
-Changes in schedules and delays in commercial flights are problems that affect everyone involved in aviation. From the passengers' perspective, it results in dissatisfied customers due to potential disruptions to their plans and the stress caused. The crew and other airport employees are also impacted, diverting manpower to resolve issues that could be minimized with better planning. The airlines, in the end, are among the most affected, facing dissatisfaction from both customers and employees, as well as significant financial losses due to airport fees, fines, passenger/crew rebooking, etc.
+## At a glance
 
-Thus, it is clear that the sooner a possible delay is predicted, the lower the damage will be for all involved. However, this is not easy, as flight delays are multi-variable and depend on unpredictable, stochastic, and uncontrollable factors, such as extreme weather events, technical problems with aircraft, security-related issues, etc. Nevertheless, although it is not possible to predict all the sources of delays, it is possible to identify some patterns that fall under the logistical control of airports and airlines. Therefore, the following work aims to use logistical data, geolocation, and weather forecasting data to identify patterns and create a classifier that can predict whether a flight will be delayed or not (binary classifier), using only information that can be obtained well in advance, enabling decision-making by airport and airline organizations.
+Flight delays cost airlines, airports and passengers money and goodwill, and the earlier a delay is anticipated, the cheaper it is to absorb. This project builds a binary classifier on **6.7 million 2023 US flights** joined with daily weather and airport location data. It deliberately uses **only pre-flight information**: schedule, route, aircraft and weather. No real-time or post-event delay data is used, so flights can be scored before the day of operation.
 
-## Objectives
-**General:**
-- Prediction of whether a flight will be delayed at takeoff;
-- 
-**Specific:**
-- A binary classifier to classify delayed flights (class 1) and on-time flights (class 0) within a 15-minute tolerance beyond the scheduled time. For this objective, only logistical data available since the flight booking and weather forecasts will be used, without real-time updates immediately before takeoff. This makes the classifier very challenging but provides a highly important predictive potential, as it helps identify delay patterns that are independent of unpredictable, stochastic, and uncontrollable events;
+| Test set: 320,233 unseen flights | Model | Base-rate guess |
+|---|---|---|
+| ROC-AUC | **0.718** | 0.50 |
+| Recall on delayed flights | **0.63** (+66%) | 0.38 |
+| Precision on delayed flights | **0.55** (+45%) | 0.38 |
+| F1 on delayed flights | **0.59** (+55%) | 0.38 |
 
-# Data
-The dataset used was obtained from the following Kaggle page: https://www.kaggle.com/datasets/bordanova/2023-us-civil-flights-delay-meteo-and-aircraft/data
+The elected model is **XGBoost tuned with Hyperopt**. It catches 63% of delayed flights, and 55% of the flights it flags are in fact delayed, against a 38% delay rate in the data.
 
+![End-to-end pipeline](docs/img/pipeline_overview.svg)
 
-## Data Description
+## What makes it interesting
 
-| Field               | Description                                               | Example                               |
-|---------------------|-----------------------------------------------------------|---------------------------------------|
-| **FlightDate**      | The date of the flight.                                    | 2024-09-09                           |
-| **Day_Of_Week**     | The day of the week when the flight occurred.              | Monday                               |
-| **Airline**         | The name or code of the airline operating the flight.      | AA for American Airlines             |
-| **Tail_Number**     | The unique identifier (registration number) of the aircraft. | N123AA                           |
-| **Dep_Airport**     | The IATA code of the departure airport.                    | JFK                                  |
-| **Dep_CityName**    | The name of the city where the departure airport is located. | New York                             |
-| **DepTime_label**   | The categorized or labeled departure time.                 | Morning                              |
-| **Dep_Delay**       | The number of minutes the flight was delayed at departure.  | 1                                   |
-| **Dep_Delay_Tag**   | Categorical representation of the departure delay.          | On-time                              |
-| **Dep_Delay_Type**  | The type or reason for the departure delay.                 | Operational                          |
-| **Arr_Airport**     | The IATA code of the arrival airport.                       | LAX                                  |
-| **Arr_CityName**    | The name of the city where the arrival airport is located.  | Los Angeles                          |
-| **Arr_Delay**       | The number of minutes the flight was delayed at arrival.     | 10                                   |
-| **Arr_Delay_Type**  | The type or reason for the arrival delay.                    | Weather                              |
-| **Flight_Duration** | The duration of the flight.                                  | 300 minutes                          |
-| **Distance_type**   | The classification of flight distance.                       | Long-haul                            |
-| **Delay_Carrier**   | Delay in minutes attributed to the airline/carrier.          | 5                          |
-| **Delay_Weather**   | Delay in minutes attributed to weather conditions.           | 10                         |
-| **Delay_NAS**       | Delay in minutes attributed to National Airspace System issues. | 0 |
-| **Delay_Security**  | Delay in minutes attributed to security-related issues.       | 0 |
-| **Delay_LastAircraft** | Delay in minutes due to the previous flight.               | 20 |
-| **Manufacturer**    | The aircraft manufacturer.                                   | Boeing                               |
-| **Model**          | The aircraft model.                                          | Boeing 737                           |
-| **Aircraft_age**   | The age of the aircraft in years.                            | 12 years                             |
-| **time**           | The specific time of the flight record.                      | 12:30 PM                         |
-| **tavg**           | The average temperature on the day of the flight.            | 22°C                                 |
-| **tmin**           | The minimum temperature on the day of the flight.            | 18°C                                 |
-| **tmax**           | The maximum temperature on the day of the flight.            | 28°C                                 |
-| **prcp**           | Precipitation amount on the day of the flight.               | 2 mm                                 |
-| **snow**           | Snowfall amount on the day of the flight.                    | 0 mm                                 |
-| **wdir**           | Wind direction.                                              | 270°                                 |
-| **wspd**           | Wind speed.                                                  | 15 km/h                              |
-| **pres**           | Atmospheric pressure.                                        | 1015 hPa                             |
-| **airport_id**     | A unique identifier for the airport.                         | 12345                                |
-| **IATA_CODE**      | The International Air Transport Association code.            | JFK                            |
-| **AIRPORT**        | The name of the airport.                                     | John F. Kennedy International Airport |
-| **CITY**           | The city where the airport is located.                       | New York                             |
-| **STATE**          | The state or region where the airport is located.            | NY                                   |
-| **COUNTRY**        | The country where the airport is located.                    | USA                                  |
-| **LATITUDE**       | The latitude coordinate of the airport.                      | 40.6413° N                           |
-| **LONGITUDE**      | The longitude coordinate of the airport.                     | 73.7781° W                           |
+- **Built to avoid leakage.** Every column describing the delay itself (minutes, causes, previous-aircraft delay) is excluded, and categorical features are target-encoded **out-of-fold**. An earlier version that used the previous flight's delay scored higher (F1 on delayed flights about 0.62 vs 0.59) but was dropped because that value is not known in advance.
+- **High-cardinality categoricals handled cleanly.** Thousands of aircraft tail numbers and hundreds of airports become one smoothed number each, instead of a huge one-hot matrix.
+- **A careful, measurable selection process.** IsolationForest outlier removal, per-column skew correction, ANOVA plus a correlation filter (23 to 16 features), then a ladder of baselines, RandomizedSearchCV and Hyperopt, all compared on the same held-out flights.
+- **A documented trail of experiments.** Seven earlier notebooks are kept in [`src/notebooks/archive`](src/notebooks/archive), each tied to the decision it informed.
 
-## Usage
-**Environment (Python 3.12):** from the repository root run `py -3.12 -m venv .venv`, then `.venv\Scripts\python -m pip install -r src\results_notebook\requirements.txt`, and open the notebooks with the `.venv` kernel. Data and model paths are relative to each notebook's folder. The original Python 3.9 + TensorFlow GPU environment is kept in `src/results_notebook/requirements-legacy-py39-gpu.txt` and `environment-legacy-py39-gpu.yml`.
+The full methodology, results discussion and limitations are in the **[project report](docs/report.md)**.
 
-This project is intended for educational purposes. You are free to use, modify, and distribute the content as needed for learning and academic activities. Please feel free to explore, experiment, and adapt the code to suit your needs. Please note that this project is a work-in-progress for educational purposes. It may not be perfect or fully optimized, as it was developed to demonstrate specific concepts and practices learned during the course.
+## Tech stack
 
-## Contribution
+Python 3.12 · pandas · NumPy · scikit-learn · imbalanced-learn · XGBoost · LightGBM · Hyperopt · SciPy · Matplotlib · seaborn · Jupyter
 
-Contributions are welcome! If you would like to contribute to this project, feel free to submit a **pull request**, open an **issue**, or engage in discussions. All contributions, whether through code improvements, bug reports, or constructive feedback, are appreciated.
+## Repository structure
 
-#### How to Contribute
-
-1. Fork the repository.
-2. Create a new branch for your changes.
-3. Make your changes and commit them.
-4. Push your changes to your fork.
-5. Open a pull request to the main repository.
-
-Please ensure your pull request is well-documented and clearly explains the changes you made. We encourage **constructive criticism** and **suggestions** to help improve the project.
-
-Thank you for contributing!
-
-## License
-License
-The dataset used in this project is sourced from Kaggle and is licensed under **CC0: Public Domain**, meaning it is free to use for any purpose, including commercial use, without any copyright restrictions. Please refer to the [dataset's Kaggle page](https://www.kaggle.com/datasets/bordanova/2023-us-civil-flights-delay-meteo-and-aircraft/data) for further details and attribution requirements.
-
-## Project Structure
-
-```plaintext
-(src/)
-│── .gitignore.txt
-│── requirements.txt
-│
-├── data_sample/
-│ └── data_sample_flights.csv
-│
-├── models/
-│ ├── best_model_lgbm.joblib
-│ ├── best_model_lgbm.pkl
-│ ├── best_model_lgbm.txt
-│ ├── best_model_xgb.joblib
-│ └── best_model_xgb.pkl
-│
-├── notebooks/
-│ ├── main - con dep delay last aircraft.ipynb
-│ ├── main - Final - RegressionArrival.ipynb
-│ ├── main - Final LastAircraft.ipynb
-│ ├── main - Nature - transformaciones.ipynb
-│ ├── main - Nature.ipynb
-│ ├── main - Regression_Arrival.ipynb
-│ ├── main.ipynb
-│ └── Notebook_without_undersampling_2022.ipynb
-│
-├── results_notebook/
-│ ├── main.ipynb
-│ ├── requirements.txt
-│ ├── requirements-legacy-py39-gpu.txt
-│ ├── environment-legacy-py39-gpu.yml
-│ └── img/
-│ ├── openart-image__3.jpg
-│ ├── openart_image_1_1.jpg
-│ └── openart_image_2.jpg
-│
-└── utils/
-└── User_Functions.py
+```text
+.
+├── docs/
+│   ├── report.md                 # methodology, results, experiment log, limitations
+│   ├── img/                      # diagrams and result figures used in the docs
+│   └── diagrams/                 # scripts that rebuild docs/img
+├── src/
+│   ├── results_notebook/
+│   │   ├── flight_delay_classification.ipynb   # ★ final, presented work
+│   │   ├── requirements.txt                    # pinned Python 3.12 environment
+│   │   ├── requirements-legacy-py39-gpu.txt    # original 2025 environment (rollback reference)
+│   │   ├── environment-legacy-py39-gpu.yml
+│   │   └── img/
+│   ├── notebooks/archive/        # earlier experiments, kept as a record (01-07)
+│   ├── models/best_model_xgb.pkl # elected, trained XGBoost model
+│   ├── utils/User_Functions.py   # encoding, transformation and plotting helpers
+│   ├── data_sample/              # 6,743-row sample of the merged data, for a quick look
+│   └── data/                     # raw Kaggle CSVs go here (git-ignored)
+├── LICENSE
+└── README.md
 ```
+
+## Getting started
+
+**1. Clone and create the environment** (Windows, Python 3.12):
+
+```powershell
+git clone https://github.com/neural-insights/Project_Break_II_ML.git
+cd Project_Break_II_ML
+py -3.12 -m venv .venv
+.venv\Scripts\python -m pip install -r src\results_notebook\requirements.txt
+```
+
+On macOS/Linux, use `python3.12 -m venv .venv` and `.venv/bin/python -m pip install -r src/results_notebook/requirements.txt`. On Windows, TensorFlow needs [long-path support](https://learn.microsoft.com/windows/win32/fileio/maximum-file-path-limitation#enable-long-paths-in-windows-10-version-1607-and-later) enabled.
+
+**2. Download the data** from Kaggle: [2023 US Civil Flights, Delay, Meteo and Aircraft](https://www.kaggle.com/datasets/bordanova/2023-us-civil-flights-delay-meteo-and-aircraft/data) (CC0, about 1.2 GB). Create the folder `src/data/` and place these three files in it:
+
+- `US_flights_2023.csv`
+- `weather_meteo_by_airport.csv`
+- `airports_geolocation.csv`
+
+**3. Run the notebook** [`src/results_notebook/flight_delay_classification.ipynb`](src/results_notebook/flight_delay_classification.ipynb) in Jupyter or VS Code with the `.venv` kernel. Paths are relative to the notebook's folder. The hyperparameter searches take a while: Hyperopt alone ran for about 16 minutes on the original machine.
+
+> **GPU note:** the XGBoost Hyperopt cell was written for an NVIDIA GPU (`tree_method='gpu_hist', gpu_id=0`). The pip XGBoost wheel bundles CUDA, so only an NVIDIA driver is needed, not a CUDA toolkit. On a machine without an NVIDIA GPU that cell stops with *"Must have at least one device"*: change those two arguments in `create_model_xgb` to `tree_method='hist'` to train on the CPU (slower). The saved model loads and predicts on any machine.
+
+To use the trained model without retraining, load `src/models/best_model_xgb.pkl` and pass a frame with the 16 features listed in the [report](docs/report.md#5-feature-selection), prepared with the same steps.
+
+<details>
+<summary><b>Data dictionary</b> (raw columns used by the model)</summary>
+
+| Field | Description | Example |
+|---|---|---|
+| Day_Of_Week | Day of the week (1 = Monday) | 3 |
+| Month, Day | Month and day of month, split from `FlightDate` | 11, 28 |
+| Airline | Operating airline | Delta Air Lines Inc |
+| Tail_Number | Aircraft registration | N905DN |
+| Dep_Airport / Arr_Airport | IATA code of departure / arrival airport | PDX / ATL |
+| DepTime_label | Scheduled departure time slot | Morning |
+| Flight_Duration | Scheduled duration in minutes | 276 |
+| Distance_type | Distance band | Medium Haul <3000Mi |
+| Manufacturer / Model | Aircraft manufacturer and model | BOEING / 737 NG |
+| Aicraft_age | Aircraft age in years (column name as in the source) | 6 |
+| LATITUDE / LONGITUDE | Departure airport coordinates | 45.59 / -122.60 |
+| tavg, tmin, tmax | Daily average, min and max temperature (°C) at the departure airport | 21.3, 13.9, 31.1 |
+| prcp, snow | Daily precipitation and snowfall (mm) | 0.0, 0.0 |
+| wdir, wspd | Wind direction (°) and speed (km/h) | 313, 11.9 |
+| pres | Air pressure (hPa) | 1012.9 |
+| **Dep_Delay_Tag** | **Target:** 1 if departure delay > 15 min, else 0 | 0 |
+
+The source also contains delay minutes and delay causes (`Dep_Delay`, `Arr_Delay`, `Delay_Carrier`, `Delay_Weather`, `Delay_NAS`, `Delay_Security`, `Delay_LastAircraft`). They are deliberately **not** used as inputs, because they are only known after the fact.
+
+</details>
+
+## License and acknowledgements
+
+The code is released under the [MIT License](LICENSE). The dataset by its Kaggle author is published under **CC0: Public Domain** and is not redistributed here, apart from the small sample in `src/data_sample/`.
+
+Developed as the capstone project of The Bridge Data Science & AI Bootcamp. Feedback and suggestions are welcome through [issues](https://github.com/neural-insights/Project_Break_II_ML/issues).

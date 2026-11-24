@@ -1,0 +1,89 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1180" height="620" viewBox="0 0 1180 620" font-family="'Segoe UI', -apple-system, 'Helvetica Neue', Helvetica, Arial, sans-serif" role="img" aria-label="Out-of-fold (K-fold) target encoding">
+<title>Out-of-fold (K-fold) target encoding</title>
+<defs>
+  <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+    <path d="M0,0 L10,5 L0,10 z" fill="#5d6b86"/>
+  </marker>
+</defs>
+<rect x="0" y="0" width="1180" height="620" rx="20" fill="#0b1220" stroke="#0b1220" stroke-width="1" />
+<text x="40" y="54" font-size="26" fill="#e6edf7" font-weight="700" text-anchor="start" >Out-of-fold (K-fold) target encoding</text>
+<text x="40" y="82" font-size="14" fill="#9aa8c1" font-weight="400" text-anchor="start" >How categorical columns become numbers while keeping each row's own label out of its encoding</text>
+<text x="40" y="130" font-size="16" fill="#e6edf7" font-weight="600" text-anchor="start" >Training set split into 5 stratified folds</text>
+<text x="40" y="154.0" font-size="13" fill="#9aa8c1" font-weight="400" text-anchor="start" >In each round, category means are learned on 4 folds and written into</text>
+<text x="40" y="171.94" font-size="13" fill="#9aa8c1" font-weight="400" text-anchor="start" >the held-out fold, so rows are encoded from the other folds'</text>
+<text x="40" y="189.88" font-size="13" fill="#9aa8c1" font-weight="400" text-anchor="start" >statistics.</text>
+<text x="40" y="229" font-size="13" fill="#9aa8c1" font-weight="600" text-anchor="start" >Round 1</text>
+<rect x="124" y="200" width="92" height="46" rx="8" fill="#fbbf24" stroke="#fbbf24" stroke-width="1" fill-opacity="0.92"/>
+<text x="170.0" y="228" font-size="13" fill="#0b1220" font-weight="700" text-anchor="middle" >encode</text>
+<rect x="224" y="200" width="92" height="46" rx="8" fill="#17233d" stroke="#38bdf8" stroke-width="1" />
+<text x="270.0" y="228" font-size="12" fill="#38bdf8" font-weight="600" text-anchor="middle" >learn means</text>
+<rect x="324" y="200" width="92" height="46" rx="8" fill="#17233d" stroke="#38bdf8" stroke-width="1" />
+<text x="370.0" y="228" font-size="12" fill="#38bdf8" font-weight="600" text-anchor="middle" >learn means</text>
+<rect x="424" y="200" width="92" height="46" rx="8" fill="#17233d" stroke="#38bdf8" stroke-width="1" />
+<text x="470.0" y="228" font-size="12" fill="#38bdf8" font-weight="600" text-anchor="middle" >learn means</text>
+<rect x="524" y="200" width="92" height="46" rx="8" fill="#17233d" stroke="#38bdf8" stroke-width="1" />
+<text x="570.0" y="228" font-size="12" fill="#38bdf8" font-weight="600" text-anchor="middle" >learn means</text>
+<text x="40" y="289" font-size="13" fill="#9aa8c1" font-weight="600" text-anchor="start" >Round 2</text>
+<rect x="124" y="260" width="92" height="46" rx="8" fill="#17233d" stroke="#38bdf8" stroke-width="1" />
+<text x="170.0" y="288" font-size="12" fill="#38bdf8" font-weight="600" text-anchor="middle" >learn means</text>
+<rect x="224" y="260" width="92" height="46" rx="8" fill="#fbbf24" stroke="#fbbf24" stroke-width="1" fill-opacity="0.92"/>
+<text x="270.0" y="288" font-size="13" fill="#0b1220" font-weight="700" text-anchor="middle" >encode</text>
+<rect x="324" y="260" width="92" height="46" rx="8" fill="#17233d" stroke="#38bdf8" stroke-width="1" />
+<text x="370.0" y="288" font-size="12" fill="#38bdf8" font-weight="600" text-anchor="middle" >learn means</text>
+<rect x="424" y="260" width="92" height="46" rx="8" fill="#17233d" stroke="#38bdf8" stroke-width="1" />
+<text x="470.0" y="288" font-size="12" fill="#38bdf8" font-weight="600" text-anchor="middle" >learn means</text>
+<rect x="524" y="260" width="92" height="46" rx="8" fill="#17233d" stroke="#38bdf8" stroke-width="1" />
+<text x="570.0" y="288" font-size="12" fill="#38bdf8" font-weight="600" text-anchor="middle" >learn means</text>
+<text x="40" y="349" font-size="13" fill="#9aa8c1" font-weight="600" text-anchor="start" >Round 3</text>
+<rect x="124" y="320" width="92" height="46" rx="8" fill="#17233d" stroke="#38bdf8" stroke-width="1" />
+<text x="170.0" y="348" font-size="12" fill="#38bdf8" font-weight="600" text-anchor="middle" >learn means</text>
+<rect x="224" y="320" width="92" height="46" rx="8" fill="#17233d" stroke="#38bdf8" stroke-width="1" />
+<text x="270.0" y="348" font-size="12" fill="#38bdf8" font-weight="600" text-anchor="middle" >learn means</text>
+<rect x="324" y="320" width="92" height="46" rx="8" fill="#fbbf24" stroke="#fbbf24" stroke-width="1" fill-opacity="0.92"/>
+<text x="370.0" y="348" font-size="13" fill="#0b1220" font-weight="700" text-anchor="middle" >encode</text>
+<rect x="424" y="320" width="92" height="46" rx="8" fill="#17233d" stroke="#38bdf8" stroke-width="1" />
+<text x="470.0" y="348" font-size="12" fill="#38bdf8" font-weight="600" text-anchor="middle" >learn means</text>
+<rect x="524" y="320" width="92" height="46" rx="8" fill="#17233d" stroke="#38bdf8" stroke-width="1" />
+<text x="570.0" y="348" font-size="12" fill="#38bdf8" font-weight="600" text-anchor="middle" >learn means</text>
+<text x="40" y="409" font-size="13" fill="#9aa8c1" font-weight="600" text-anchor="start" >Round 4</text>
+<rect x="124" y="380" width="92" height="46" rx="8" fill="#17233d" stroke="#38bdf8" stroke-width="1" />
+<text x="170.0" y="408" font-size="12" fill="#38bdf8" font-weight="600" text-anchor="middle" >learn means</text>
+<rect x="224" y="380" width="92" height="46" rx="8" fill="#17233d" stroke="#38bdf8" stroke-width="1" />
+<text x="270.0" y="408" font-size="12" fill="#38bdf8" font-weight="600" text-anchor="middle" >learn means</text>
+<rect x="324" y="380" width="92" height="46" rx="8" fill="#17233d" stroke="#38bdf8" stroke-width="1" />
+<text x="370.0" y="408" font-size="12" fill="#38bdf8" font-weight="600" text-anchor="middle" >learn means</text>
+<rect x="424" y="380" width="92" height="46" rx="8" fill="#fbbf24" stroke="#fbbf24" stroke-width="1" fill-opacity="0.92"/>
+<text x="470.0" y="408" font-size="13" fill="#0b1220" font-weight="700" text-anchor="middle" >encode</text>
+<rect x="524" y="380" width="92" height="46" rx="8" fill="#17233d" stroke="#38bdf8" stroke-width="1" />
+<text x="570.0" y="408" font-size="12" fill="#38bdf8" font-weight="600" text-anchor="middle" >learn means</text>
+<text x="40" y="469" font-size="13" fill="#9aa8c1" font-weight="600" text-anchor="start" >Round 5</text>
+<rect x="124" y="440" width="92" height="46" rx="8" fill="#17233d" stroke="#38bdf8" stroke-width="1" />
+<text x="170.0" y="468" font-size="12" fill="#38bdf8" font-weight="600" text-anchor="middle" >learn means</text>
+<rect x="224" y="440" width="92" height="46" rx="8" fill="#17233d" stroke="#38bdf8" stroke-width="1" />
+<text x="270.0" y="468" font-size="12" fill="#38bdf8" font-weight="600" text-anchor="middle" >learn means</text>
+<rect x="324" y="440" width="92" height="46" rx="8" fill="#17233d" stroke="#38bdf8" stroke-width="1" />
+<text x="370.0" y="468" font-size="12" fill="#38bdf8" font-weight="600" text-anchor="middle" >learn means</text>
+<rect x="424" y="440" width="92" height="46" rx="8" fill="#17233d" stroke="#38bdf8" stroke-width="1" />
+<text x="470.0" y="468" font-size="12" fill="#38bdf8" font-weight="600" text-anchor="middle" >learn means</text>
+<rect x="524" y="440" width="92" height="46" rx="8" fill="#fbbf24" stroke="#fbbf24" stroke-width="1" fill-opacity="0.92"/>
+<text x="570.0" y="468" font-size="13" fill="#0b1220" font-weight="700" text-anchor="middle" >encode</text>
+<rect x="124" y="518" width="14" height="14" rx="3" fill="#17233d" stroke="#38bdf8" stroke-width="1" />
+<text x="146" y="530" font-size="12.5" fill="#9aa8c1" font-weight="400" text-anchor="start" >folds used to compute category means</text>
+<rect x="420" y="518" width="14" height="14" rx="3" fill="#fbbf24" stroke="#fbbf24" stroke-width="1" />
+<text x="442" y="530" font-size="12.5" fill="#9aa8c1" font-weight="400" text-anchor="start" >fold receiving the encoded values</text>
+<rect x="680" y="120" width="460" height="210" rx="14" fill="#121c31" stroke="#fbbf24" stroke-width="1.5" />
+<text x="704" y="154" font-size="16" fill="#e6edf7" font-weight="650" text-anchor="start" >Smoothed category mean</text>
+<text x="704" y="198" font-size="14" fill="#fbbf24" font-weight="600" text-anchor="start" font-family="Consolas, Menlo, monospace">enc(c) = (mean_c * n_c + global * a) / (n_c + a)</text>
+<text x="704" y="232.0" font-size="13" fill="#9aa8c1" font-weight="400" text-anchor="start" >mean_c and n_c = delay rate and flight count of category</text>
+<text x="704" y="249.94" font-size="13" fill="#9aa8c1" font-weight="400" text-anchor="start" >c, global = overall delay rate, a = 0.3. Rare categories</text>
+<text x="704" y="267.88" font-size="13" fill="#9aa8c1" font-weight="400" text-anchor="start" >(for example a single aircraft tail number) are pulled</text>
+<text x="704" y="285.82" font-size="13" fill="#9aa8c1" font-weight="400" text-anchor="start" >toward the overall delay rate instead of memorising a</text>
+<text x="704" y="303.76" font-size="13" fill="#9aa8c1" font-weight="400" text-anchor="start" >few labels.</text>
+<rect x="680" y="350" width="460" height="150" rx="14" fill="#121c31" stroke="#38bdf8" stroke-width="1.5" />
+<text x="704" y="384" font-size="16" fill="#e6edf7" font-weight="650" text-anchor="start" >Test set</text>
+<text x="704" y="410.0" font-size="13" fill="#9aa8c1" font-weight="400" text-anchor="start" >Mapped with the category means learned on the training</text>
+<text x="704" y="427.94" font-size="13" fill="#9aa8c1" font-weight="400" text-anchor="start" >folds. Categories never seen in training get the global</text>
+<text x="704" y="445.88" font-size="13" fill="#9aa8c1" font-weight="400" text-anchor="start" >mean (only 18 rows in the whole test split).</text>
+<text x="40" y="568.0" font-size="12.5" fill="#5d6b86" font-weight="400" text-anchor="start" >Applied to 8 columns: Airline, Tail_Number, Dep_Airport, DepTime_label, Arr_Airport, Distance_type, Manufacturer, Model. It turns high-cardinality IDs</text>
+<text x="40" y="585.25" font-size="12.5" fill="#5d6b86" font-weight="400" text-anchor="start" >(thousands of aircraft) into one informative number each, without one-hot explosion.</text>
+</svg>
