@@ -78,6 +78,8 @@ The dataset used was obtained from the following Kaggle page: https://www.kaggle
 | **LONGITUDE**      | The longitude coordinate of the airport.                     | 73.7781° W                           |
 
 ## Usage
+**Environment (Python 3.12):** from the repository root run `py -3.12 -m venv .venv`, then `.venv\Scripts\python -m pip install -r src\results_notebook\requirements.txt`, and open the notebooks with the `.venv` kernel. Data and model paths are relative to each notebook's folder. The original Python 3.9 + TensorFlow GPU environment is kept in `src/results_notebook/requirements-legacy-py39-gpu.txt` and `environment-legacy-py39-gpu.yml`.
+
 This project is intended for educational purposes. You are free to use, modify, and distribute the content as needed for learning and academic activities. Please feel free to explore, experiment, and adapt the code to suit your needs. Please note that this project is a work-in-progress for educational purposes. It may not be perfect or fully optimized, as it was developed to demonstrate specific concepts and practices learned during the course.
 
 ## Contribution
@@ -130,6 +132,8 @@ The dataset used in this project is sourced from Kaggle and is licensed under **
 ├── results_notebook/
 │ ├── main.ipynb
 │ ├── requirements.txt
+│ ├── requirements-legacy-py39-gpu.txt
+│ ├── environment-legacy-py39-gpu.yml
 │ └── img/
 │ ├── openart-image__3.jpg
 │ ├── openart_image_1_1.jpg
