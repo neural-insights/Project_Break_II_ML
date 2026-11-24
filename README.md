@@ -82,7 +82,9 @@ On macOS/Linux, use `python3.12 -m venv .venv` and `.venv/bin/python -m pip inst
 - `weather_meteo_by_airport.csv`
 - `airports_geolocation.csv`
 
-**3. Run the notebook** [`src/results_notebook/flight_delay_classification.ipynb`](src/results_notebook/flight_delay_classification.ipynb) in Jupyter or VS Code with the `.venv` kernel. Paths are relative to the notebook's folder. The hyperparameter searches take a while: Hyperopt alone ran for about 16 minutes on the original GPU machine, and XGBoost uses a GPU when one is available.
+**3. Run the notebook** [`src/results_notebook/flight_delay_classification.ipynb`](src/results_notebook/flight_delay_classification.ipynb) in Jupyter or VS Code with the `.venv` kernel. Paths are relative to the notebook's folder. The hyperparameter searches take a while: Hyperopt alone ran for about 16 minutes on the original machine.
+
+> **GPU note:** the XGBoost Hyperopt cell was written for an NVIDIA GPU (`tree_method='gpu_hist', gpu_id=0`). The pip XGBoost wheel bundles CUDA, so only an NVIDIA driver is needed, not a CUDA toolkit. On a machine without an NVIDIA GPU that cell stops with *"Must have at least one device"*: change those two arguments in `create_model_xgb` to `tree_method='hist'` to train on the CPU (slower). The saved model loads and predicts on any machine.
 
 To use the trained model without retraining, load `src/models/best_model_xgb.pkl` and pass a frame with the 16 features listed in the [report](docs/report.md#5-feature-selection), prepared with the same steps.
 
