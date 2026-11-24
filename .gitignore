@@ -1,15 +1,27 @@
-src/data/weather_meteo_by_airport.csv
-src/data/airports_geolocation.csv
-src/data/Cancelled_Diverted_2023.csv
-src/data/maj us flight - january 2024.csv
-src/data/US_flights_2023.csv
+# Raw Kaggle data (~1.2 GB): download it yourself, see README "Data"
+src/data/
 
-src/utils/__pycache__/
-structure.txt
-Presentacion.mp4
+# Python / Jupyter artifacts
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
 
 # local virtual environment
 .venv/
+
+# secrets and local config
+.env
+*.local.*
+
+# OS / editor clutter
+Thumbs.db
+desktop.ini
+.DS_Store
+.vscode/
+
+# local-only files
+structure.txt
+Presentacion.mp4
 
 # personal sketch notebook (2022 dataset), kept locally only
 src/notebooks/archive/00_first_attempt_2022_dataset.ipynb
