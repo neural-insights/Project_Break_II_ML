@@ -1,4 +1,6 @@
-# Project Break II ML - Python 3.12 environment (CPU).
+# Project Break II ML - Python 3.12 environment.
+# Runs on CPU; XGBoost uses an NVIDIA GPU automatically when one is present
+# (the pip wheel bundles CUDA, only the NVIDIA driver is needed).
 # Setup (from the repo root, Windows):
 #   py -3.12 -m venv .venv
 #   .venv\Scripts\python -m pip install -r src\results_notebook\requirements.txt
@@ -6,7 +8,7 @@
 # (paths are relative to the notebook, e.g. ../data, ../models).
 #
 # Model libraries are pinned to the exact versions that trained and saved
-# src/models/*.pkl|*.joblib, so the saved models load and score identically.
+# src/models/best_model_xgb.pkl, so the saved model loads and scores identically.
 # Legacy (original) environment for full rollback:
 #   requirements-legacy-py39-gpu.txt, environment-legacy-py39-gpu.yml (conda, Python 3.9 + TF 2.7 GPU)
 #
@@ -31,6 +33,10 @@ hyperopt==0.2.7
 setuptools==80.10.2
 joblib==1.4.2
 tqdm==4.67.1
+
+# --- deep learning (archived experiments only) ---
+# Keras MLPs in src/notebooks/archive/01 and 02. Not used by the final
+# notebook or src/utils (GPU detection now goes through XGBoost).
 tensorflow==2.21.0
 
 # --- plotting / notebooks ---
