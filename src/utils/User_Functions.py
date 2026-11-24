@@ -1,6 +1,7 @@
+import json
+import warnings
 import numpy as np
 import matplotlib.pyplot as plt
-import tensorflow as tf
 import pandas as pd
 from sklearn.model_selection import StratifiedKFold, KFold
 from sklearn.metrics import classification_report
@@ -15,22 +16,41 @@ from scipy.stats import boxcox
 
 def try_GPU():
     """
-    Checks if a GPU is available and sets it as the visible device for TensorFlow if found.
-    If no GPU is available, it defaults to using the CPU.
+    Detects whether XGBoost can train on an NVIDIA GPU and returns the device to use.
 
-    This function lists the physical devices available for TensorFlow and selects the first GPU
-    if one is available. If a GPU is not found, it will print a message indicating that the CPU is being used.
+    Fits a one-tree XGBoost model on random data with device="cuda" and reads back the
+    device XGBoost actually used (without a GPU, XGBoost silently switches to the CPU).
+    The pip XGBoost wheel bundles CUDA, so only an NVIDIA driver is needed. If there is
+    no usable GPU, or the check fails for any reason, it falls back to the CPU instead
+    of raising.
+
+    TensorFlow is no longer used here: the original 2025 version asked TensorFlow, which
+    cannot use a GPU on native Windows since 2.11 and is not used by the final model.
+
+    Returns:
+        str: "cuda" if XGBoost can train on the GPU, otherwise "cpu".
 
     Prints:
-        - "Using GPU" if a GPU is available and set for use.
-        - "Using CPU" if no GPU is available, and the CPU is being used.
+        - "Using GPU" if the GPU is usable.
+        - "Using CPU." otherwise.
     """
-    physical_devices = tf.config.list_physical_devices('GPU')
-    if len(physical_devices) > 0:
-        tf.config.set_visible_devices(physical_devices[0], 'GPU')
-        print("Using GPU")
-    else:
-        print("Using CPU.")
+    device = "cpu"
+    try:
+        import xgboost as xgb
+
+        X = np.random.rand(64, 2)
+        y = np.arange(64) % 2
+        with warnings.catch_warnings():
+            warnings.simplefilter("ignore")
+            probe = xgb.XGBClassifier(n_estimators=1, tree_method="hist", device="cuda", verbosity=0)
+            probe.fit(X, y)
+        config = json.loads(probe.get_booster().save_config())
+        if str(config["learner"]["generic_param"].get("device", "cpu")).startswith("cuda"):
+            device = "cuda"
+    except Exception:
+        device = "cpu"
+    print("Using GPU" if device == "cuda" else "Using CPU.")
+    return device
 
 
 def type_features(df):
