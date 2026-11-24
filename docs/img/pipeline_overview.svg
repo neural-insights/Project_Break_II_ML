@@ -1,0 +1,126 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="790" viewBox="0 0 1280 790" font-family="'Segoe UI', -apple-system, 'Helvetica Neue', Helvetica, Arial, sans-serif" role="img" aria-label="Flight delay prediction: end-to-end pipeline">
+<title>Flight delay prediction: end-to-end pipeline</title>
+<defs>
+  <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+    <path d="M0,0 L10,5 L0,10 z" fill="#5d6b86"/>
+  </marker>
+</defs>
+<rect x="0" y="0" width="1280" height="790" rx="20" fill="#0b1220" stroke="#0b1220" stroke-width="1" />
+<text x="40" y="54" font-size="26" fill="#e6edf7" font-weight="700" text-anchor="start" >Flight delay prediction: end-to-end pipeline</text>
+<text x="40" y="82" font-size="14" fill="#9aa8c1" font-weight="400" text-anchor="start" >From three raw Kaggle tables to an XGBoost classifier that flags likely departure delays (&gt;15 min) in advance</text>
+<rect x="40" y="112" width="280" height="52" rx="12" fill="#17233d" stroke="#38bdf8" stroke-width="1.5" />
+<circle cx="68" cy="138" r="14" fill="#38bdf8"/>
+<text x="68" y="143" font-size="14" fill="#0b1220" font-weight="700" text-anchor="middle" >1</text>
+<text x="92" y="144" font-size="17" fill="#e6edf7" font-weight="650" text-anchor="start" >Data integration</text>
+<line x1="323" y1="138" x2="343" y2="138" stroke="#5d6b86" stroke-width="2" marker-end="url(#arrow)" />
+<rect x="40" y="184" width="280" height="100" rx="12" fill="#121c31" stroke="#26365a" stroke-width="1" />
+<rect x="40" y="198" width="4" height="72" rx="2" fill="#38bdf8"/>
+<text x="60" y="214" font-size="15" fill="#e6edf7" font-weight="600" text-anchor="start" >US domestic flights 2023</text>
+<text x="60" y="238.0" font-size="13" fill="#9aa8c1" font-weight="400" text-anchor="start" >6,743,404 flights x 24 columns</text>
+<text x="60" y="255.94" font-size="13" fill="#9aa8c1" font-weight="400" text-anchor="start" >(schedule, airline, aircraft, delays)</text>
+<rect x="40" y="296" width="280" height="100" rx="12" fill="#121c31" stroke="#26365a" stroke-width="1" />
+<rect x="40" y="310" width="4" height="72" rx="2" fill="#38bdf8"/>
+<text x="60" y="326" font-size="15" fill="#e6edf7" font-weight="600" text-anchor="start" >Daily weather per airport</text>
+<text x="60" y="350.0" font-size="13" fill="#9aa8c1" font-weight="400" text-anchor="start" >132,860 rows: temperature, rain,</text>
+<text x="60" y="367.94" font-size="13" fill="#9aa8c1" font-weight="400" text-anchor="start" >snow, wind, pressure</text>
+<rect x="40" y="408" width="280" height="100" rx="12" fill="#121c31" stroke="#26365a" stroke-width="1" />
+<rect x="40" y="422" width="4" height="72" rx="2" fill="#38bdf8"/>
+<text x="60" y="438" font-size="15" fill="#e6edf7" font-weight="600" text-anchor="start" >Airport geolocation</text>
+<text x="60" y="462.0" font-size="13" fill="#9aa8c1" font-weight="400" text-anchor="start" >364 airports with latitude and</text>
+<text x="60" y="479.94" font-size="13" fill="#9aa8c1" font-weight="400" text-anchor="start" >longitude</text>
+<rect x="40" y="520" width="280" height="100" rx="12" fill="#121c31" stroke="#26365a" stroke-width="1" />
+<rect x="40" y="534" width="4" height="72" rx="2" fill="#38bdf8"/>
+<text x="60" y="550" font-size="15" fill="#e6edf7" font-weight="600" text-anchor="start" >Left joins</text>
+<text x="60" y="574.0" font-size="13" fill="#9aa8c1" font-weight="400" text-anchor="start" >Flights + location on departure</text>
+<text x="60" y="591.94" font-size="13" fill="#9aa8c1" font-weight="400" text-anchor="start" >airport; + weather on airport and</text>
+<text x="60" y="609.88" font-size="13" fill="#9aa8c1" font-weight="400" text-anchor="start" >date</text>
+<rect x="346" y="112" width="280" height="52" rx="12" fill="#17233d" stroke="#a78bfa" stroke-width="1.5" />
+<circle cx="374" cy="138" r="14" fill="#a78bfa"/>
+<text x="374" y="143" font-size="14" fill="#0b1220" font-weight="700" text-anchor="middle" >2</text>
+<text x="398" y="144" font-size="17" fill="#e6edf7" font-weight="650" text-anchor="start" >Cleaning &amp; sampling</text>
+<line x1="629" y1="138" x2="649" y2="138" stroke="#5d6b86" stroke-width="2" marker-end="url(#arrow)" />
+<rect x="346" y="184" width="280" height="100" rx="12" fill="#121c31" stroke="#26365a" stroke-width="1" />
+<rect x="346" y="198" width="4" height="72" rx="2" fill="#a78bfa"/>
+<text x="366" y="214" font-size="15" fill="#e6edf7" font-weight="600" text-anchor="start" >Only what is known in advance</text>
+<text x="366" y="238.0" font-size="13" fill="#9aa8c1" font-weight="400" text-anchor="start" >15 numeric + 8 categorical features;</text>
+<text x="366" y="255.94" font-size="13" fill="#9aa8c1" font-weight="400" text-anchor="start" >all delay-cause columns dropped</text>
+<rect x="346" y="296" width="280" height="100" rx="12" fill="#121c31" stroke="#26365a" stroke-width="1" />
+<rect x="346" y="310" width="4" height="72" rx="2" fill="#a78bfa"/>
+<text x="366" y="326" font-size="15" fill="#e6edf7" font-weight="600" text-anchor="start" >Deduplicate</text>
+<text x="366" y="350.0" font-size="13" fill="#9aa8c1" font-weight="400" text-anchor="start" >853 duplicates removed; 37.9% of</text>
+<text x="366" y="367.94" font-size="13" fill="#9aa8c1" font-weight="400" text-anchor="start" >flights are delayed (&gt;15 min)</text>
+<rect x="346" y="408" width="280" height="100" rx="12" fill="#121c31" stroke="#26365a" stroke-width="1" />
+<rect x="346" y="422" width="4" height="72" rx="2" fill="#a78bfa"/>
+<text x="366" y="438" font-size="15" fill="#e6edf7" font-weight="600" text-anchor="start" >Sample and split</text>
+<text x="366" y="462.0" font-size="13" fill="#9aa8c1" font-weight="400" text-anchor="start" >25% random sample (1.69M), then 80/20</text>
+<text x="366" y="479.94" font-size="13" fill="#9aa8c1" font-weight="400" text-anchor="start" >train/test split</text>
+<rect x="346" y="520" width="280" height="100" rx="12" fill="#121c31" stroke="#26365a" stroke-width="1" />
+<rect x="346" y="534" width="4" height="72" rx="2" fill="#a78bfa"/>
+<text x="366" y="550" font-size="15" fill="#e6edf7" font-weight="600" text-anchor="start" >Outlier removal</text>
+<text x="366" y="574.0" font-size="13" fill="#9aa8c1" font-weight="400" text-anchor="start" >IsolationForest flags 5% of rows;</text>
+<text x="366" y="591.94" font-size="13" fill="#9aa8c1" font-weight="400" text-anchor="start" >class balance unchanged</text>
+<rect x="652" y="112" width="280" height="52" rx="12" fill="#17233d" stroke="#fbbf24" stroke-width="1.5" />
+<circle cx="680" cy="138" r="14" fill="#fbbf24"/>
+<text x="680" y="143" font-size="14" fill="#0b1220" font-weight="700" text-anchor="middle" >3</text>
+<text x="704" y="144" font-size="17" fill="#e6edf7" font-weight="650" text-anchor="start" >Feature engineering</text>
+<line x1="935" y1="138" x2="955" y2="138" stroke="#5d6b86" stroke-width="2" marker-end="url(#arrow)" />
+<rect x="652" y="184" width="280" height="100" rx="12" fill="#121c31" stroke="#26365a" stroke-width="1" />
+<rect x="652" y="198" width="4" height="72" rx="2" fill="#fbbf24"/>
+<text x="672" y="214" font-size="15" fill="#e6edf7" font-weight="600" text-anchor="start" >K-fold target encoding</text>
+<text x="672" y="238.0" font-size="13" fill="#9aa8c1" font-weight="400" text-anchor="start" >8 categoricals (airline, aircraft,</text>
+<text x="672" y="255.94" font-size="13" fill="#9aa8c1" font-weight="400" text-anchor="start" >airports...) encoded out-of-fold</text>
+<rect x="652" y="296" width="280" height="100" rx="12" fill="#121c31" stroke="#26365a" stroke-width="1" />
+<rect x="652" y="310" width="4" height="72" rx="2" fill="#fbbf24"/>
+<text x="672" y="326" font-size="15" fill="#e6edf7" font-weight="600" text-anchor="start" >Skew correction</text>
+<text x="672" y="350.0" font-size="13" fill="#9aa8c1" font-weight="400" text-anchor="start" >Box-Cox, cube root, log1p and sqrt</text>
+<text x="672" y="367.94" font-size="13" fill="#9aa8c1" font-weight="400" text-anchor="start" >picked per column</text>
+<rect x="652" y="408" width="280" height="100" rx="12" fill="#121c31" stroke="#26365a" stroke-width="1" />
+<rect x="652" y="422" width="4" height="72" rx="2" fill="#fbbf24"/>
+<text x="672" y="438" font-size="15" fill="#e6edf7" font-weight="600" text-anchor="start" >Standard scaling</text>
+<text x="672" y="462.0" font-size="13" fill="#9aa8c1" font-weight="400" text-anchor="start" >Used for statistical tests and the</text>
+<text x="672" y="479.94" font-size="13" fill="#9aa8c1" font-weight="400" text-anchor="start" >linear model</text>
+<rect x="652" y="520" width="280" height="100" rx="12" fill="#121c31" stroke="#26365a" stroke-width="1" />
+<rect x="652" y="534" width="4" height="72" rx="2" fill="#fbbf24"/>
+<text x="672" y="550" font-size="15" fill="#e6edf7" font-weight="600" text-anchor="start" >Feature selection</text>
+<text x="672" y="574.0" font-size="13" fill="#9aa8c1" font-weight="400" text-anchor="start" >ANOVA (p &lt; 0.01) + correlation</text>
+<text x="672" y="591.94" font-size="13" fill="#9aa8c1" font-weight="400" text-anchor="start" >filter: 23 to 16 features</text>
+<rect x="958" y="112" width="280" height="52" rx="12" fill="#17233d" stroke="#34d399" stroke-width="1.5" />
+<circle cx="986" cy="138" r="14" fill="#34d399"/>
+<text x="986" y="143" font-size="14" fill="#0b1220" font-weight="700" text-anchor="middle" >4</text>
+<text x="1010" y="144" font-size="17" fill="#e6edf7" font-weight="650" text-anchor="start" >Modeling &amp; selection</text>
+<rect x="958" y="184" width="280" height="100" rx="12" fill="#121c31" stroke="#26365a" stroke-width="1" />
+<rect x="958" y="198" width="4" height="72" rx="2" fill="#34d399"/>
+<text x="978" y="214" font-size="15" fill="#e6edf7" font-weight="600" text-anchor="start" >Class balancing</text>
+<text x="978" y="238.0" font-size="13" fill="#9aa8c1" font-weight="400" text-anchor="start" >Random undersampling to 50/50</text>
+<text x="978" y="255.94" font-size="13" fill="#9aa8c1" font-weight="400" text-anchor="start" >(254,478 training rows)</text>
+<rect x="958" y="296" width="280" height="100" rx="12" fill="#121c31" stroke="#26365a" stroke-width="1" />
+<rect x="958" y="310" width="4" height="72" rx="2" fill="#34d399"/>
+<text x="978" y="326" font-size="15" fill="#e6edf7" font-weight="600" text-anchor="start" >Baselines</text>
+<text x="978" y="350.0" font-size="13" fill="#9aa8c1" font-weight="400" text-anchor="start" >Random guess, Logistic Regression,</text>
+<text x="978" y="367.94" font-size="13" fill="#9aa8c1" font-weight="400" text-anchor="start" >RF, GB, XGBoost, LightGBM</text>
+<rect x="958" y="408" width="280" height="100" rx="12" fill="#121c31" stroke="#26365a" stroke-width="1" />
+<rect x="958" y="422" width="4" height="72" rx="2" fill="#34d399"/>
+<text x="978" y="438" font-size="15" fill="#e6edf7" font-weight="600" text-anchor="start" >Randomized search</text>
+<text x="978" y="462.0" font-size="13" fill="#9aa8c1" font-weight="400" text-anchor="start" >20 candidates x 5-fold CV per model,</text>
+<text x="978" y="479.94" font-size="13" fill="#9aa8c1" font-weight="400" text-anchor="start" >scored on F1</text>
+<rect x="958" y="520" width="280" height="100" rx="12" fill="#121c31" stroke="#26365a" stroke-width="1" />
+<rect x="958" y="534" width="4" height="72" rx="2" fill="#34d399"/>
+<text x="978" y="550" font-size="15" fill="#e6edf7" font-weight="600" text-anchor="start" >Hyperopt (TPE)</text>
+<text x="978" y="574.0" font-size="13" fill="#9aa8c1" font-weight="400" text-anchor="start" >50 trials each for XGBoost and</text>
+<text x="978" y="591.94" font-size="13" fill="#9aa8c1" font-weight="400" text-anchor="start" >LightGBM; XGBoost elected</text>
+<rect x="40" y="644" width="1200" height="112" rx="14" fill="#17233d" stroke="#34d399" stroke-width="1.5" />
+<text x="64" y="674" font-size="12" fill="#34d399" font-weight="700" text-anchor="start" letter-spacing="1.5">RESULT ON 320,233 UNSEEN TEST FLIGHTS</text>
+<text x="64.0" y="716" font-size="32" fill="#e6edf7" font-weight="700" text-anchor="start" >0.718</text>
+<text x="176.0" y="704.0" font-size="12.5" fill="#9aa8c1" font-weight="400" text-anchor="start" >ROC-AUC on the test set</text>
+<text x="176.0" y="721.25" font-size="12.5" fill="#9aa8c1" font-weight="400" text-anchor="start" >(train: 0.800)</text>
+<text x="352.0" y="716" font-size="32" fill="#e6edf7" font-weight="700" text-anchor="start" >+66%</text>
+<text x="464.0" y="704.0" font-size="12.5" fill="#9aa8c1" font-weight="400" text-anchor="start" >recall on delayed flights</text>
+<text x="464.0" y="721.25" font-size="12.5" fill="#9aa8c1" font-weight="400" text-anchor="start" >vs. a base-rate guess</text>
+<text x="464.0" y="738.5" font-size="12.5" fill="#9aa8c1" font-weight="400" text-anchor="start" >(0.63 vs 0.38)</text>
+<text x="640.0" y="716" font-size="32" fill="#e6edf7" font-weight="700" text-anchor="start" >+45%</text>
+<text x="752.0" y="704.0" font-size="12.5" fill="#9aa8c1" font-weight="400" text-anchor="start" >precision on delayed</text>
+<text x="752.0" y="721.25" font-size="12.5" fill="#9aa8c1" font-weight="400" text-anchor="start" >flights (0.55 vs 0.38)</text>
+<text x="928.0" y="716" font-size="32" fill="#e6edf7" font-weight="700" text-anchor="start" >+55%</text>
+<text x="1040.0" y="704.0" font-size="12.5" fill="#9aa8c1" font-weight="400" text-anchor="start" >F1 on delayed flights</text>
+<text x="1040.0" y="721.25" font-size="12.5" fill="#9aa8c1" font-weight="400" text-anchor="start" >(0.59 vs 0.38)</text>
+</svg>

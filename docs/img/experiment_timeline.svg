@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1180" height="900" viewBox="0 0 1180 900" font-family="'Segoe UI', -apple-system, 'Helvetica Neue', Helvetica, Arial, sans-serif" role="img" aria-label="Experiment log">
+<title>Experiment log</title>
+<defs>
+  <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+    <path d="M0,0 L10,5 L0,10 z" fill="#5d6b86"/>
+  </marker>
+</defs>
+<rect x="0" y="0" width="1180" height="900" rx="20" fill="#0b1220" stroke="#0b1220" stroke-width="1" />
+<text x="40" y="54" font-size="26" fill="#e6edf7" font-weight="700" text-anchor="start" >Experiment log</text>
+<text x="40" y="82" font-size="14" fill="#9aa8c1" font-weight="400" text-anchor="start" >Archived notebooks in src/notebooks/archive and what each one taught</text>
+<line x1="92" y1="130" x2="92" y2="772" stroke="#26365a" stroke-width="3"/>
+<circle cx="92" cy="154" r="20" fill="#17233d" stroke="#34d399" stroke-width="2"/>
+<text x="92" y="159" font-size="13" fill="#e6edf7" font-weight="700" text-anchor="middle" >01</text>
+<rect x="132" y="130" width="1000" height="66" rx="12" fill="#121c31" stroke="#26365a" stroke-width="1" />
+<text x="152" y="157" font-size="15.5" fill="#e6edf7" font-weight="650" text-anchor="start" >Resampling strategies</text>
+<text x="152" y="180" font-size="12.5" fill="#9aa8c1" font-weight="400" text-anchor="start" >NearMiss vs random undersampling; also tried an MLP and CatBoost.</text>
+<rect x="906.0" y="143" width="206.0" height="26" rx="13" fill="#0b1220" stroke="#34d399" stroke-width="1.2" />
+<text x="1009.0" y="161" font-size="12" fill="#34d399" font-weight="600" text-anchor="middle" >random undersampling kept</text>
+<circle cx="92" cy="240" r="20" fill="#17233d" stroke="#fb7185" stroke-width="2"/>
+<text x="92" y="245" font-size="13" fill="#e6edf7" font-weight="700" text-anchor="middle" >02</text>
+<rect x="132" y="216" width="1000" height="66" rx="12" fill="#121c31" stroke="#26365a" stroke-width="1" />
+<text x="152" y="243" font-size="15.5" fill="#e6edf7" font-weight="650" text-anchor="start" >Arrival-delay regression</text>
+<text x="152" y="266" font-size="12.5" fill="#9aa8c1" font-weight="400" text-anchor="start" >Predict minutes of arrival delay. R2 reached 0.97, but only because departure delay was an input.</text>
+<rect x="963.6" y="229" width="148.4" height="26" rx="13" fill="#0b1220" stroke="#fb7185" stroke-width="1.2" />
+<text x="1037.8" y="247" font-size="12" fill="#fb7185" font-weight="600" text-anchor="middle" >objective dropped</text>
+<circle cx="92" cy="326" r="20" fill="#17233d" stroke="#34d399" stroke-width="2"/>
+<text x="92" y="331" font-size="13" fill="#e6edf7" font-weight="700" text-anchor="middle" >03</text>
+<rect x="132" y="302" width="1000" height="66" rx="12" fill="#121c31" stroke="#26365a" stroke-width="1" />
+<text x="152" y="329" font-size="15.5" fill="#e6edf7" font-weight="650" text-anchor="start" >One-hot + target encoding</text>
+<text x="152" y="352" font-size="12.5" fill="#9aa8c1" font-weight="400" text-anchor="start" >Mixed encodings for categoricals, NearMiss balancing, LightGBM tuned with Hyperopt.</text>
+<rect x="942.0" y="315" width="170.0" height="26" rx="13" fill="#0b1220" stroke="#34d399" stroke-width="1.2" />
+<text x="1027.0" y="333" font-size="12" fill="#34d399" font-weight="600" text-anchor="middle" >target encoding only</text>
+<circle cx="92" cy="412" r="20" fill="#17233d" stroke="#fb7185" stroke-width="2"/>
+<text x="92" y="417" font-size="13" fill="#e6edf7" font-weight="700" text-anchor="middle" >04</text>
+<rect x="132" y="388" width="1000" height="66" rx="12" fill="#121c31" stroke="#26365a" stroke-width="1" />
+<text x="152" y="415" font-size="15.5" fill="#e6edf7" font-weight="650" text-anchor="start" >Last-aircraft delay feature</text>
+<text x="152" y="438" font-size="12.5" fill="#9aa8c1" font-weight="400" text-anchor="start" >Delay of the aircraft's previous flight as an input, plus decision-threshold tuning.</text>
+<rect x="877.2" y="401" width="234.8" height="26" rx="13" fill="#0b1220" stroke="#fb7185" stroke-width="1.2" />
+<text x="994.6" y="419" font-size="12" fill="#fb7185" font-weight="600" text-anchor="middle" >dropped: not known in advance</text>
+<circle cx="92" cy="498" r="20" fill="#17233d" stroke="#34d399" stroke-width="2"/>
+<text x="92" y="503" font-size="13" fill="#e6edf7" font-weight="700" text-anchor="middle" >05</text>
+<rect x="132" y="474" width="1000" height="66" rx="12" fill="#121c31" stroke="#26365a" stroke-width="1" />
+<text x="152" y="501" font-size="15.5" fill="#e6edf7" font-weight="650" text-anchor="start" >Outliers and skew</text>
+<text x="152" y="524" font-size="12.5" fill="#9aa8c1" font-weight="400" text-anchor="start" >IsolationForest outlier removal and automatic skew transforms.</text>
+<rect x="1057.2" y="487" width="54.8" height="26" rx="13" fill="#0b1220" stroke="#34d399" stroke-width="1.2" />
+<text x="1084.6" y="505" font-size="12" fill="#34d399" font-weight="600" text-anchor="middle" >kept</text>
+<circle cx="92" cy="584" r="20" fill="#17233d" stroke="#fbbf24" stroke-width="2"/>
+<text x="92" y="589" font-size="13" fill="#e6edf7" font-weight="700" text-anchor="middle" >06</text>
+<rect x="132" y="560" width="1000" height="66" rx="12" fill="#121c31" stroke="#26365a" stroke-width="1" />
+<text x="152" y="587" font-size="15.5" fill="#e6edf7" font-weight="650" text-anchor="start" >Pre-final pipeline</text>
+<text x="152" y="610" font-size="12.5" fill="#9aa8c1" font-weight="400" text-anchor="start" >Full final pipeline on a 10% sample, still using the last-aircraft delay.</text>
+<rect x="927.6" y="573" width="184.4" height="26" rx="13" fill="#0b1220" stroke="#fbbf24" stroke-width="1.2" />
+<text x="1019.8" y="591" font-size="12" fill="#fbbf24" font-weight="600" text-anchor="middle" >refined into the final</text>
+<circle cx="92" cy="670" r="20" fill="#17233d" stroke="#fb7185" stroke-width="2"/>
+<text x="92" y="675" font-size="13" fill="#e6edf7" font-weight="700" text-anchor="middle" >07</text>
+<rect x="132" y="646" width="1000" height="66" rx="12" fill="#121c31" stroke="#26365a" stroke-width="1" />
+<text x="152" y="673" font-size="15.5" fill="#e6edf7" font-weight="650" text-anchor="start" >Regression port</text>
+<text x="152" y="696" font-size="12.5" fill="#9aa8c1" font-weight="400" text-anchor="start" >Final notebook partly converted to regression; never re-run.</text>
+<rect x="1021.2" y="659" width="90.8" height="26" rx="13" fill="#0b1220" stroke="#fb7185" stroke-width="1.2" />
+<text x="1066.6" y="677" font-size="12" fill="#fb7185" font-weight="600" text-anchor="middle" >abandoned</text>
+<circle cx="92" cy="766" r="24" fill="#34d399"/>
+<text x="92" y="773" font-size="20" fill="#0b1220" font-weight="700" text-anchor="middle" >★</text>
+<rect x="132" y="732" width="1000" height="80" rx="12" fill="#17233d" stroke="#34d399" stroke-width="1.5" />
+<text x="152" y="762" font-size="16" fill="#34d399" font-weight="700" text-anchor="start" >Final: flight_delay_classification.ipynb</text>
+<text x="152" y="788" font-size="12.5" fill="#e6edf7" font-weight="400" text-anchor="start" >Only pre-flight information, outlier removal, K-fold target encoding, ANOVA + correlation selection, Hyperopt-tuned XGBoost.</text>
+<text x="40" y="870" font-size="12.5" fill="#5d6b86" font-weight="400" text-anchor="start" >Also tried along the way: HDBSCAN clustering to train one model per flight group (no gain for a high compute cost).</text>
+</svg>

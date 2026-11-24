@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1180" height="850" viewBox="0 0 1180 850" font-family="'Segoe UI', -apple-system, 'Helvetica Neue', Helvetica, Arial, sans-serif" role="img" aria-label="Model selection">
+<title>Model selection</title>
+<defs>
+  <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+    <path d="M0,0 L10,5 L0,10 z" fill="#5d6b86"/>
+  </marker>
+</defs>
+<rect x="0" y="0" width="1180" height="850" rx="20" fill="#0b1220" stroke="#0b1220" stroke-width="1" />
+<text x="40" y="54" font-size="26" fill="#e6edf7" font-weight="700" text-anchor="start" >Model selection</text>
+<text x="40" y="82" font-size="14" fill="#9aa8c1" font-weight="400" text-anchor="start" >Each stage is compared on the same 320,233 held-out flights</text>
+<text x="470" y="116" font-size="12.5" fill="#9aa8c1" font-weight="600" text-anchor="start" >F1-score on delayed flights (class 1), test set</text>
+<rect x="40" y="136" width="1100" height="72" rx="12" fill="#121c31" stroke="#26365a" stroke-width="1" />
+<rect x="40" y="146" width="4" height="52" rx="2" fill="#5d6b86"/>
+<text x="64" y="166" font-size="16" fill="#e6edf7" font-weight="650" text-anchor="start" >Random guess</text>
+<text x="64" y="188" font-size="12.5" fill="#9aa8c1" font-weight="400" text-anchor="start" >predicts by class proportions</text>
+<text x="456" y="165" font-size="13" fill="#9aa8c1" font-weight="500" text-anchor="end" >Base rate</text>
+<rect x="470" y="152" width="282.2857142857143" height="18" rx="5" fill="#5d6b86" stroke="#5d6b86" stroke-width="0" fill-opacity="0.85"/>
+<text x="762.2857142857142" y="166" font-size="13" fill="#e6edf7" font-weight="700" text-anchor="start" >0.38</text>
+<rect x="40" y="220" width="1100" height="72" rx="12" fill="#121c31" stroke="#26365a" stroke-width="1" />
+<rect x="40" y="230" width="4" height="52" rx="2" fill="#a78bfa"/>
+<text x="64" y="250" font-size="16" fill="#e6edf7" font-weight="650" text-anchor="start" >Logistic Regression</text>
+<text x="64" y="272" font-size="12.5" fill="#9aa8c1" font-weight="400" text-anchor="start" >scaled features, undersampled</text>
+<text x="456" y="249" font-size="13" fill="#9aa8c1" font-weight="500" text-anchor="end" >LogReg</text>
+<rect x="470" y="236" width="423.42857142857144" height="18" rx="5" fill="#a78bfa" stroke="#a78bfa" stroke-width="0" fill-opacity="0.85"/>
+<text x="903.4285714285714" y="250" font-size="13" fill="#e6edf7" font-weight="700" text-anchor="start" >0.57</text>
+<rect x="40" y="304" width="1100" height="142" rx="12" fill="#121c31" stroke="#26365a" stroke-width="1" />
+<rect x="40" y="314" width="4" height="122" rx="2" fill="#38bdf8"/>
+<text x="64" y="334" font-size="16" fill="#e6edf7" font-weight="650" text-anchor="start" >Default ensembles</text>
+<text x="64" y="356" font-size="12.5" fill="#9aa8c1" font-weight="400" text-anchor="start" >out of the box, undersampled</text>
+<text x="456" y="333" font-size="13" fill="#9aa8c1" font-weight="500" text-anchor="end" >RandomForest</text>
+<rect x="470" y="320" width="423.42857142857144" height="18" rx="5" fill="#38bdf8" stroke="#38bdf8" stroke-width="0" fill-opacity="0.85"/>
+<text x="903.4285714285714" y="334" font-size="13" fill="#e6edf7" font-weight="700" text-anchor="start" >0.57</text>
+<text x="456" y="363" font-size="13" fill="#9aa8c1" font-weight="500" text-anchor="end" >GradientBoost</text>
+<rect x="470" y="350" width="430.85714285714283" height="18" rx="5" fill="#38bdf8" stroke="#38bdf8" stroke-width="0" fill-opacity="0.85"/>
+<text x="910.8571428571429" y="364" font-size="13" fill="#e6edf7" font-weight="700" text-anchor="start" >0.58</text>
+<text x="456" y="393" font-size="13" fill="#9aa8c1" font-weight="500" text-anchor="end" >XGBoost</text>
+<rect x="470" y="380" width="438.28571428571433" height="18" rx="5" fill="#38bdf8" stroke="#38bdf8" stroke-width="0" fill-opacity="0.85"/>
+<text x="918.2857142857143" y="394" font-size="13" fill="#e6edf7" font-weight="700" text-anchor="start" >0.59</text>
+<text x="456" y="423" font-size="13" fill="#9aa8c1" font-weight="500" text-anchor="end" >LightGBM</text>
+<rect x="470" y="410" width="430.85714285714283" height="18" rx="5" fill="#38bdf8" stroke="#38bdf8" stroke-width="0" fill-opacity="0.85"/>
+<text x="910.8571428571429" y="424" font-size="13" fill="#e6edf7" font-weight="700" text-anchor="start" >0.58</text>
+<rect x="40" y="458" width="1100" height="112" rx="12" fill="#121c31" stroke="#26365a" stroke-width="1" />
+<rect x="40" y="468" width="4" height="92" rx="2" fill="#fbbf24"/>
+<text x="64" y="488" font-size="16" fill="#e6edf7" font-weight="650" text-anchor="start" >RandomizedSearchCV</text>
+<text x="64" y="510" font-size="12.5" fill="#9aa8c1" font-weight="400" text-anchor="start" >20 candidates x 5-fold, F1</text>
+<text x="456" y="487" font-size="13" fill="#9aa8c1" font-weight="500" text-anchor="end" >RandomForest</text>
+<rect x="470" y="474" width="430.85714285714283" height="18" rx="5" fill="#fbbf24" stroke="#fbbf24" stroke-width="0" fill-opacity="0.85"/>
+<text x="910.8571428571429" y="488" font-size="13" fill="#e6edf7" font-weight="700" text-anchor="start" >0.58</text>
+<text x="456" y="517" font-size="13" fill="#9aa8c1" font-weight="500" text-anchor="end" >XGBoost</text>
+<rect x="470" y="504" width="438.28571428571433" height="18" rx="5" fill="#fbbf24" stroke="#fbbf24" stroke-width="0" fill-opacity="0.85"/>
+<text x="918.2857142857143" y="518" font-size="13" fill="#e6edf7" font-weight="700" text-anchor="start" >0.59</text>
+<text x="456" y="547" font-size="13" fill="#9aa8c1" font-weight="500" text-anchor="end" >LightGBM</text>
+<rect x="470" y="534" width="438.28571428571433" height="18" rx="5" fill="#fbbf24" stroke="#fbbf24" stroke-width="0" fill-opacity="0.85"/>
+<text x="918.2857142857143" y="548" font-size="13" fill="#e6edf7" font-weight="700" text-anchor="start" >0.59</text>
+<rect x="40" y="582" width="1100" height="82" rx="12" fill="#121c31" stroke="#26365a" stroke-width="1" />
+<rect x="40" y="592" width="4" height="62" rx="2" fill="#34d399"/>
+<text x="64" y="612" font-size="16" fill="#e6edf7" font-weight="650" text-anchor="start" >Hyperopt TPE</text>
+<text x="64" y="634" font-size="12.5" fill="#9aa8c1" font-weight="400" text-anchor="start" >50 trials x stratified 5-fold, F1</text>
+<text x="456" y="611" font-size="13" fill="#9aa8c1" font-weight="500" text-anchor="end" >XGBoost</text>
+<rect x="470" y="598" width="438.28571428571433" height="18" rx="5" fill="#34d399" stroke="#34d399" stroke-width="0" fill-opacity="0.85"/>
+<text x="918.2857142857143" y="612" font-size="13" fill="#e6edf7" font-weight="700" text-anchor="start" >0.59</text>
+<text x="456" y="641" font-size="13" fill="#9aa8c1" font-weight="500" text-anchor="end" >LightGBM</text>
+<rect x="470" y="628" width="438.28571428571433" height="18" rx="5" fill="#34d399" stroke="#34d399" stroke-width="0" fill-opacity="0.85"/>
+<text x="918.2857142857143" y="642" font-size="13" fill="#e6edf7" font-weight="700" text-anchor="start" >0.59</text>
+<line x1="752.2857142857142" y1="132" x2="752.2857142857142" y2="668" stroke="#fb7185" stroke-width="1.5" stroke-dasharray="4 4"/>
+<text x="758.2857142857142" y="682" font-size="12" fill="#fb7185" font-weight="600" text-anchor="start" >base rate 0.38</text>
+<rect x="40" y="700" width="1100" height="118" rx="14" fill="#17233d" stroke="#34d399" stroke-width="1.5" />
+<text x="64" y="732" font-size="18" fill="#34d399" font-weight="700" text-anchor="start" >Elected: XGBoost (Hyperopt)</text>
+<text x="64" y="756" font-size="13" fill="#9aa8c1" font-weight="400" text-anchor="start" >275 trees, max depth 8, learning rate 0.064, subsample 0.85, colsample 0.8</text>
+<text x="64" y="782.0" font-size="13" fill="#e6edf7" font-weight="400" text-anchor="start" >Chosen on cross-validated F1 (0.648 vs 0.647 for LightGBM). Test: accuracy 0.67, class-1 precision 0.55, recall 0.63,</text>
+<text x="64" y="799.94" font-size="13" fill="#e6edf7" font-weight="400" text-anchor="start" >ROC-AUC 0.718.</text>
+</svg>
