@@ -7,3 +7,6 @@ src/data/US_flights_2023.csv
 src/utils/__pycache__/
 structure.txt
 Presentacion.mp4
+
+# local virtual environment
+.venv/
