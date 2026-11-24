@@ -10,3 +10,6 @@ Presentacion.mp4
 
 # local virtual environment
 .venv/
+
+# personal sketch notebook (2022 dataset), kept locally only
+src/notebooks/archive/00_first_attempt_2022_dataset.ipynb
